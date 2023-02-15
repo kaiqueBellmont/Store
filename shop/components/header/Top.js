@@ -32,7 +32,7 @@ export default function Top() {
           </li>
           <li className={styles.li}>
             <BsSuitHeart />
-            <Link href="/profile/whishlist">
+            <Link href="/profile/whishlist" legacyBehavior>
               <span>Whishlist</span>
             </Link>
           </li>
@@ -63,5 +63,5 @@ export default function Top() {
         </ul>
       </div>
     </div>
-  )
+  );
 }
