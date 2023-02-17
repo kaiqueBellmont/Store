@@ -7,7 +7,7 @@ import { useState } from 'react'
 import UserMenu from './UserMenu'
 
 
-export default function Top() {
+export default function Top({ country }) {
   const [loggedIn, setLoggedIn] = useState(true);
   const [visible, setVisible] = useState(false);
   return (
@@ -16,9 +16,9 @@ export default function Top() {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Brazil_flag_300.png"
+            <img src={country.flag}
               alt="" />
-            <span>Brasil / real</span>
+            <span>{country.name}</span>
           </li>
           <li className={styles.li}>
             <MdSecurity />
