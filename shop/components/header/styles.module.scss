@@ -144,6 +144,7 @@
       }
 
       &:hover {
+        color: #000;
         background: #eeeeeebe;
       }
     }
@@ -164,7 +165,13 @@
         font-size: 14px;
         color: $blue-color;
         text-decoration: underline;
+        &:hover {
+          color: #000;
+          background: #eeeeeebe;
+        }
       }
+
+
     }
   }
 }
@@ -242,6 +249,7 @@
       fill: $blue-color;
     }
   }
+
   span {
     position: absolute;
     top: -5px;
