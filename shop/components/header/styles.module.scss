@@ -50,7 +50,7 @@
           color: #f8f8f8;
           background-color: #000;
           transition: 0.5s;
-
+            
         }
 
         .btn_outlined:hover {
@@ -223,6 +223,7 @@
     background: #eeeeeebc;
     height: 40px;
     border-radius: 5px;
+    
 
     input {
       border: none;
@@ -262,30 +263,13 @@
   }
 
   .search__icon:hover {
-
-
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
     background: black;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
     cursor: pointer;
 
 
 
-    fill: #fff;
+    // fill: #fff;
     transition: 0.3s;
-    
-
-    svg {
-      width: 21px;
-      height: 21px;
-      fill: #fff
-    }
-
-
   }
 }
 
