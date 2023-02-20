@@ -74,6 +74,8 @@
         font-size: 14px;
         width: fit-content;
         height: 40px;
+        //
+        margin-left: 40px;
         &:hover {
           color: $blue-color;
           border-bottom: 1px solid $blue-color;
