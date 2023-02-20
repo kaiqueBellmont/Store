@@ -91,6 +91,11 @@
       button {
         width: 150px;
       }
+      button:hover {
+        color: #f8f8f8;
+        background-color: #000;
+        transition: 0.5s;
+      }
       p {
         margin-top: 10px;
         font-size: 12px;

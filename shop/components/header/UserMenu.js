@@ -22,7 +22,8 @@ export default function UserMenu({ session }) {
                   : session.user.name
               }
             </h3>
-            <span onClick={() => signOut()}>Sign Out</span>
+            <button className={styles.btn_primary} onClick={() => signOut()}>Sair</button>
+            {/* <span onClick={() => signOut()}>Sign Out</span> */}
           </div>
         </div>
       ) : (

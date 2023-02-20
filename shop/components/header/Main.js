@@ -3,8 +3,6 @@ import styles from './styles.module.scss'
 import { RiSearch2Line } from 'react-icons/ri'
 import { FaOpencart } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-
-
 export default function Main() {
   const { cart } = useSelector((state) => ({ ...state }))
   return (
@@ -17,7 +15,7 @@ export default function Main() {
         </Link>
         <div className={styles.search}>
           <input type="text" placeholder='search...' />
-          <div className={styles.search_icon}>
+          <div className={styles.search__icon}>
             <RiSearch2Line />
           </div>
         </div>

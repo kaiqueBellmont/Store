@@ -11,6 +11,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  cursor: pointer;
 }
 
 //TOP---------------------------------------------------
@@ -39,12 +40,25 @@
       justify-content: center;
       gap: 4px;
       color: #666;
-      cursor: pointer;
 
       .flex {
         display: flex;
         align-items: center;
         gap: 2px;
+
+        .btn_primary:hover {
+          color: #f8f8f8;
+          background-color: #000;
+          transition: 0.5s;
+
+        }
+
+        .btn_outlined:hover {
+          color: #000;
+          background-color: #ccc;
+          transition: color 0.2s ease-in-out;
+
+        }
 
         svg {
           transform: scale(1.2);
@@ -57,16 +71,21 @@
         height: 28px;
         object-fit: cover;
         border-radius: 50%;
+        cursor: pointer;
+
       }
 
       svg {
         width: 20px;
         height: 20px;
         fill: #ccc;
+        cursor: pointer;
+
       }
 
       span {
         font-size: 12px;
+
       }
 
       &::after {
@@ -83,12 +102,14 @@
       &:last-of-type {
         &::after {
           display: none;
+
         }
       }
 
       &:hover {
         span {
           color: #000;
+          cursor: pointer;
         }
 
         svg {
@@ -122,6 +143,7 @@
   gap: 1rem;
   padding: 1rem 0;
 
+
   h4 {
     text-align: center;
   }
@@ -131,7 +153,6 @@
     gap: 10px !important;
     width: 100%;
     padding: 0 1rem;
-
   }
 
   ul {
@@ -146,6 +167,7 @@
       &:hover {
         color: #000;
         background: #eeeeeebe;
+        cursor: pointer;
       }
     }
   }
@@ -162,16 +184,10 @@
 
     span {
       &:last-of-type {
-        font-size: 14px;
-        color: $blue-color;
-        text-decoration: underline;
         &:hover {
-          color: #000;
-          background: #eeeeeebe;
+          cursor: default;
         }
       }
-
-
     }
   }
 }
@@ -225,14 +241,51 @@
       background: $blue-color;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
       cursor: pointer;
+
+      // :hover {
+      //   cursor: pointer;
+      //   fill: #000;
+      //   transition: fill 0.3s ease-in-out;
+      // }
 
       svg {
         width: 21px;
         height: 21px;
         fill: #fff
       }
+
     }
+  }
+
+  .search__icon:hover {
+
+
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+
+
+
+    fill: #fff;
+    transition: 0.3s;
+    
+
+    svg {
+      width: 21px;
+      height: 21px;
+      fill: #fff
+    }
+
+
   }
 }
 

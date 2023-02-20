@@ -41,7 +41,7 @@ export default function NewsLetter() {
           style={{ cursor: `${loading ? "not-allowed" : ""}` }}
           onClick={() => subscribe()}
         >
-          SUBSCRIBE
+          INSCREVA-SE
         </button>
       </div>
       {loading && <div className="">loading...</div>}
