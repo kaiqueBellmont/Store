@@ -2,11 +2,13 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import axios from "axios";
+
 export default function NewsLetter() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
   const subscribe = async () => {
     setSuccess("");
     setError("");
@@ -22,6 +24,7 @@ export default function NewsLetter() {
       setError(error.response.data.message);
     }
   };
+
   return (
     <div className={styles.footer__newsletter}>
       <h3>SIGN UP FOR OUR NEWSLETTER</h3>
@@ -34,7 +37,7 @@ export default function NewsLetter() {
         />
         <button
           className={styles.btn_primary}
-          disbaled={loading === true}
+          disabled={loading === true}
           style={{ cursor: `${loading ? "not-allowed" : ""}` }}
           onClick={() => subscribe()}
         >

@@ -5,15 +5,15 @@ export default function Links() {
   return (
     <div className={styles.footer__links}>
       {links.map((link, i) => (
-        <ul>
+        <ul key={i}>
           {i === 0 ? (
             <img src="../../../logo.png" alt="" />
           ) : (
             <b>{link.heading}</b>
           )}
-          {link.links.map((link) => (
-            <li>
-              <Link href={link.link} >{link.name}</Link>
+          {link.links.map((link, j) => (
+            <li key={j}>
+              <Link href={link.link}>{link.name}</Link>
             </li>
           ))}
         </ul>
@@ -21,6 +21,7 @@ export default function Links() {
     </div>
   );
 }
+
 const links = [
   {
     heading: "SHOPPAY",
