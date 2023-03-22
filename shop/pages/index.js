@@ -7,17 +7,23 @@ import Main from '../components/home/main'
 import axios from 'axios'
 import { useSession, signIn, signOut } from "next-auth/react"
 import FlashDeals from '../components/home/flashdeals'
-
+import db from '@/utils/db'
 import { useMediaQuery } from 'react-responsive'
-
+import Product from '@/models/Product'
 
 import {
+  gamingSwiper,
+  homeImprovSwiper,
   women_accessories,
   women_dresses,
   women_shoes,
+  women_swiper,
 } from "../data/home";
 
-export default function Home({ country }) {
+import ProductsSwiper from '@/components/productsSwiper'
+import ProductCard from '@/components/productCard'
+
+export default function Home({ country, products }) {
   const { data: session } = useSession()
   const isMedium = useMediaQuery({ query: "(max-width:850px)" });
   const isMobile = useMediaQuery({ query: "(max-width:550px)" });
@@ -53,6 +59,14 @@ export default function Home({ country }) {
             background="#000"
           />
         </div>
+        <ProductsSwiper products={women_swiper} />
+        <ProductsSwiper products={gamingSwiper} header="For Gamers" bg="#ed4337" />
+        <ProductsSwiper products={homeImprovSwiper} header="House Improvements" bg="#5a31f4" />
+        <div className={styles.products}>
+          {products.map((product) => (
+            <ProductCard product={product} key={product._id} />
+          ))}
+        </div>
       </div>
     </div>
     <Footer country={country} />
@@ -60,6 +74,8 @@ export default function Home({ country }) {
 }
 
 export async function getServerSideProps() {
+  db.connectDb();
+  let products = await Product.find().sort({ createdAt: -1 }).lean()
   let data = await axios.get('https://api.ipregistry.co/?key=3fh49z69rso1p2ju').then((res) => {
     return res.data.location.country;
   })
@@ -68,6 +84,7 @@ export async function getServerSideProps() {
     })
   return {
     props: {
+      products: JSON.parse(JSON.stringify(products)),
       country: { name: data.name, flag: data.flag.emojitwo },
     },
   }
