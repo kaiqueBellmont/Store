@@ -17,7 +17,7 @@ export default function product({ product, related }) {
   const [activeImg, setActiveImg] = useState("");
   const country = {
     name: "Morocco",
-    flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
+    flag: "https://cdn-icons-png.flaticon.com/512/3909/3909370.png",
   };
   return (
     <>
@@ -138,7 +138,6 @@ export async function getServerSideProps(context) {
     ).toFixed(1);
   }
   db.disconnectDb();
-  console.log("related", related);
   return {
     props: {
       product: JSON.parse(JSON.stringify(newProduct)),

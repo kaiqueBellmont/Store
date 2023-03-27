@@ -2,13 +2,15 @@ import { Rating } from "@mui/material";
 import styles from "./styles.module.scss";
 import { AiOutlineLike } from "react-icons/ai";
 export default function Review({ review }) {
-  const { name, image } = review.reviewBy;
+  const name = review.reviewBy;
+  const image = review.reviewBy;
   return (
     <div className={styles.review}>
       <div className={styles.flex}>
         <div className={styles.review__user}>
+          {/* TODO FAZER FUNCIONAR APARECER O NOME DO CABRA */}
           <h4>
-            {name.slice(0, 1)}***{name.slice(name.length - 1, name.length)}
+            {name?.slice(0, 1)}***{name?.slice(name?.length - 1, name?.length)}
           </h4>
           <img src={image} alt="" />
         </div>

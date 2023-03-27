@@ -138,7 +138,6 @@ export async function getServerSideProps(context) {
     ).toFixed(1);
   }
   db.disconnectDb();
-  console.log("related", related);
   return {
     props: {
       product: JSON.parse(JSON.stringify(newProduct)),

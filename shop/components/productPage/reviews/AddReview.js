@@ -140,6 +140,7 @@ export default function AddReview({ product, setReviews }) {
           disabled={loading}
         >
           Submit Review{" "}
+          {/* TODO FAZER FUNCIONAR SUBMIT REVIEW */}
           {loading && <ClipLoader loading={loading} color="#fff" />}
         </button>
       </div>
