@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Product({ product, selected, setSelected }) {
   const { cart } = useSelector((state) => ({ ...state }));
-  
+
   useEffect(() => {
     const check = selected.find((p) => p._uid == product._uid);
     setActive(check);
@@ -20,21 +20,29 @@ export default function Product({ product, selected, setSelected }) {
   const updateQty = (type) => {
     let newCart = cart.cartItems.map((p) => {
       if (p._uid == product._uid) {
+        const newQty = type == "plus" ? product.qty + 1 : product.qty - 1;
+        setSelected(
+          newQty > 0 ? [...selected.filter((p) => p._uid !== product._uid), { ...product, qty: newQty }] : selected.filter((p) => p._uid !== product._uid)
+        );
         return {
           ...p,
-          qty: type == "plus" ? product.qty + 1 : product.qty - 1,
+          qty: newQty,
         };
       }
       return p;
     });
     dispatch(updateCart(newCart));
   };
+
   const removeProduct = (id) => {
+    let newSelected = selected.filter((p) => p._uid !== id);
+    setSelected(newSelected);
     let newCart = cart.cartItems.filter((p) => {
-      return p._uid != id;
+      return p._uid !== id;
     });
     dispatch(updateCart(newCart));
   };
+  
   const handleSelect = () => {
     if (active) {
       setSelected(selected.filter((p) => p._uid !== product._uid));

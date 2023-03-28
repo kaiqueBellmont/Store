@@ -1,5 +1,5 @@
-import Header from "components/cart/header"
-import styles from "../styles/cart.module.scss"
+import Header from "components/cart/header";
+import styles from "../styles/cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import Empty from "@/components/cart/empty";
 import Product from "@/components/cart/product";
@@ -11,15 +11,10 @@ import PaymentMethods from "@/components/cart/paymentMethods";
 import ProductsSwiper from "@/components/productsSwiper";
 import { women_swiper } from "@/data/home";
 
-export default function cart() {
+export default function Cart() {
   const [selected, setSelected] = useState([]);
-  const { cart } = useSelector((state) => ({ ...state }))
+  const { cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-  //-----------------------
-  useEffect(() => {
-
-  }, [])
-
   const [shippingFee, setShippingFee] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
@@ -31,11 +26,17 @@ export default function cart() {
     setSubtotal(selected.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2));
     setTotal(
       (
-        selected.reduce((a, c) => a + c.price * c.qty, 0) + Number(shippingFee)
+        selected.reduce((a, c) => a + c.price * c.qty, 0) +
+        Number(shippingFee)
       ).toFixed(2)
     );
+  }, [selected, shippingFee]);
+
+  useEffect(() => {
+    if (selected.length === 0) {
+      setShippingFee(0);
+    }
   }, [selected]);
-  //-----------------------
 
 
   return (
@@ -72,8 +73,7 @@ export default function cart() {
         )}
 
         <ProductsSwiper products={women_swiper} />
-
       </div>
     </>
-  )
+  );
 }
