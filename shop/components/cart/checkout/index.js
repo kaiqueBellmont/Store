@@ -18,7 +18,14 @@ export default function Checkout({ subtotal, shippingFee, total, selected }) {
         <span>US: {total}</span>
       </div>
       <div className={styles.submit}>
-        <button>
+        <button
+          disabled={selected.length == 0}
+          style={{
+            background: `${selected.length == 0 ? "#eee" : ""}`,
+            cursor: `${selected.length == 0 ? "not-allowed" : ""}`,
+          }}
+          onClick={() => saveCartToDbHandler()}
+        >
           Continue
         </button>
       </div>
