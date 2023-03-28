@@ -21,6 +21,12 @@ export default function Product({ product }) {
     });
     dispatch(updateCart(newCart));
   };
+  const removeProduct = (id) => {
+    let newCart = cart.cartItems.filter((p) => {
+      return p._uid != id;
+    });
+    dispatch(updateCart(newCart));
+  };
   return (
     <div className={`${styles.card} ${styles.product}`}>
       {product.quantity < 1 && <div className={styles.blur}></div>}
@@ -43,7 +49,7 @@ export default function Product({ product }) {
             <div className={{ zIndex: '2' }}>
               <BsHeart />
             </div>
-            <div className={{ zIndex: '2' }}>
+            <div className={{ zIndex: '2' }} onClick={() => removeProduct(product._uid)}>
               <AiOutlineDelete />
             </div>
           </div>
@@ -77,7 +83,7 @@ export default function Product({ product }) {
               </button>
               <span>{product.qty}</span>
               <button
-                disabled={product.qty < 2}
+                disabled={product.qty == product.quantity}
                 onClick={() => updateQty("plus")}
               >
                 +
