@@ -103,7 +103,7 @@
       gap: 10px;
       button {
         background: #f5f5f5;
-        width: 30px;
+        width: 30px;   
         height: 30px;
         border-radius: 50%;
         display: grid;
@@ -116,7 +116,7 @@
     }
   }
   &__shipping {
-    font-size: 12px;
+    font-size: 1px;
     color: $blue-color;
   }
 }

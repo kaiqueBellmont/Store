@@ -1,10 +1,26 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsHeart } from "react-icons/bs";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.scss";
+import { updateCart } from "../../../store/cartSlice";
 
 
 export default function Product({ product }) {
+  const { cart } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
+  const updateQty = (type) => {
+    let newCart = cart.cartItems.map((p) => {
+      if (p._uid == product._uid) {
+        return {
+          ...p,
+          qty: type == "plus" ? product.qty + 1 : product.qty - 1,
+        };
+      }
+      return p;
+    });
+    dispatch(updateCart(newCart));
+  };
   return (
     <div className={`${styles.card} ${styles.product}`}>
       {product.quantity < 1 && <div className={styles.blur}></div>}
@@ -52,11 +68,21 @@ export default function Product({ product }) {
                   <span className={styles.discount}>-{product.discount}%</span>
                 )}
             </div>
-          </div>
-          <div className={styles.product__priceQty_qty}>
-            <button disabled={product.qty < 2}>-</button>
-            <span>{product.qty}</span>
-            <button disabled={product.qty == product.quantity}>+</button>
+            <div className={styles.product__priceQty_qty}>
+              <button
+                disabled={product.qty < 2}
+                onClick={() => updateQty("minus")}
+              >
+                -
+              </button>
+              <span>{product.qty}</span>
+              <button
+                disabled={product.qty < 2}
+                onClick={() => updateQty("plus")}
+              >
+                +
+              </button>
+            </div>
           </div>
           <div className={styles.product__shipping}>
             {product.shipping
