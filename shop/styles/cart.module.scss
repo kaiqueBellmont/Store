@@ -34,6 +34,6 @@
   }
   &__products {
     grid-area: products;
-    border: 10px;
+    transform: translateY(-130px);
   }
 }

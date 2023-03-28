@@ -56,7 +56,7 @@ export default function Product({ product }) {
           <div className={styles.product__style}>
             <img src={product.color.image} alt="" />
             {product.size && <span>{product.size} </span>}
-            {product.price && <span>{product.price.toFixed(2)} </span>}
+            {product.price && <span>{product.price.toFixed(2)}$</span>}
             <MdOutlineKeyboardArrowRight />
           </div>
           <div className={styles.product__priceQty}>
