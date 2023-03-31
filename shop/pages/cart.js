@@ -10,14 +10,32 @@ import { useEffect, useState } from "react";
 import PaymentMethods from "@/components/cart/paymentMethods";
 import ProductsSwiper from "@/components/productsSwiper";
 import { women_swiper } from "@/data/home";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { saveCart } from "@/requests/user";
+import axios from "axios";
 
 export default function Cart() {
+  const Router = useRouter()
+  const { data: session } = useSession()
   const [selected, setSelected] = useState([]);
   const { cart } = useSelector((state) => ({ ...state }));
-  const dispatch = useDispatch();
   const [shippingFee, setShippingFee] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const update = async () => {
+      const { data } = await axios.post("/api/updateCart", {
+        products: cart.cartItems,
+      });
+      dispatch(updateCart(data));
+    };
+    if (cart.cartItems.length > 0) {
+      update();
+    }
+  }, [])
 
   useEffect(() => {
     setShippingFee(
@@ -32,13 +50,21 @@ export default function Cart() {
     );
   }, [selected, shippingFee]);
 
+  
   useEffect(() => {
     if (selected.length === 0) {
       setShippingFee(0);
     }
   }, [selected]);
 
-
+  const saveCartToDbHandler = async () => {
+    if (session) {
+      const res = saveCart(selected, session.user.id);
+      Router.push("/checkout")
+    } else {
+      signIn();
+    }
+  };
   return (
     <>
       <Header />
@@ -65,6 +91,7 @@ export default function Cart() {
               shippingFee={shippingFee}
               selected={selected}
               total={total}
+              saveCartToDbHandler={saveCartToDbHandler}
             />
             <PaymentMethods />
           </div>
