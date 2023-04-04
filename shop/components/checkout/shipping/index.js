@@ -6,6 +6,7 @@ import ShippingInput from "@/components/inputs/shippingInput";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { countries } from "../../../data/countries";
 import SingularSelect from "@/components/selects/SingularSelect";
+import { saveAddress } from "@/requests/user";
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -17,8 +18,8 @@ const initialValues = {
   address2: "",
   country: "",
 };
-export default function Shipping({ addresses, setAddresses, user }) {
-  // const [addresses, setAddresses] = useState(user?.addresses || []);
+export default function Shipping({ selectedAddress, setSelectedAddress, user }) {
+  const [addresses, setAddresses] = useState(user?.addresses || []);
   const [shipping, setShipping] = useState(initialValues);
   const {
     firstName,
@@ -68,6 +69,11 @@ export default function Shipping({ addresses, setAddresses, user }) {
     const { name, value } = e.target;
     setShipping({ ...shipping, [name]: value });
   };
+  const saveShippingHandler = async () => {
+    const res = await saveAddress(shipping, user._id);
+    setAddresses(res.addresses);
+    setSelectedAddress(res);
+  };
   return (
     <div className={styles.shipping}>
       <Formik
@@ -85,6 +91,9 @@ export default function Shipping({ addresses, setAddresses, user }) {
             country,
           }}
         validationSchema={validate}
+        onSubmit={() => {
+          saveShippingHandler();
+        }}
       >
         {(formik) => (
           <Form>
