@@ -145,7 +145,7 @@ export default function Shipping({ addresses, setAddresses, user }) {
               onChange={handleChange}
             />
             <ShippingInput
-              name="Address 2"
+              name="address2"
               placeholder="Address 2"
               onChange={handleChange}
             />
