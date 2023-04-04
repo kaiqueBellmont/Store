@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import ShippingInput from "@/components/inputs/shippingInput";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { countries } from "../../../data/countries";
+import SingularSelect from "@/components/selects/SingularSelect";
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -87,24 +88,13 @@ export default function Shipping({ addresses, setAddresses, user }) {
       >
         {(formik) => (
           <Form>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">
-                Country
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={country}
-                name="country"
-                onChange={handleChange}
-              >
-                {countries.map(country => (
-                  <MenuItem value={country.name} key={country.name}>
-                    {country.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <SingularSelect
+              name="country"
+              value={country}
+              placeholder="*Country"
+              handleChange={handleChange}
+              data={countries}
+            />
             <div className={styles.col}>
               <ShippingInput
                 name="firstName"
@@ -149,6 +139,7 @@ export default function Shipping({ addresses, setAddresses, user }) {
               placeholder="Address 2"
               onChange={handleChange}
             />
+            <button type="submit">Save Address</button>
           </Form>
         )}
       </Formik>
