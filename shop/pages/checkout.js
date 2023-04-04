@@ -8,18 +8,18 @@ import Header from "@/components/cart/header";
 import Shipping from "@/components/checkout/shipping";
 
 export default function checkout({ cart, user }) {
-  const [addresses, setAddresses] = useState(user?.address || []);
-  const [paymentMethod, setPaymentMethod] = useState("");
-  const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
-  const [selectedAddress, setSelectedAddress] = useState("");
-  useEffect(() => {
-    let check = addresses.find((ad) => ad.active == true);
-    if (check) {
-      setSelectedAddress(check);
-    } else {
-      setSelectedAddress("");
-    }
-  }, [addresses]);
+  // const [addresses, setAddresses] = useState(user?.address || []);
+  // const [paymentMethod, setPaymentMethod] = useState("");
+  // const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState(user?.address[1]);
+  // useEffect(() => {
+  //   let check = addresses.find((ad) => ad.active == true);
+  //   if (check) {
+  //     setSelectedAddress(check);
+  //   } else {
+  //     setSelectedAddress("");
+  //   }
+  // }, [addresses]);
   return (
     <>
       <Header />

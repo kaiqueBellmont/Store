@@ -25,7 +25,6 @@ export default function Infos({ product, setActiveImg }) {
   const [success, setSuccess] = useState("");
   const { cart } = useSelector((state) => ({ ...state }));
 
-  console.log(cart);
   useEffect(() => {
     dispatch(hideDialog());
   }, []);
