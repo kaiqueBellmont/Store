@@ -20,7 +20,6 @@ handler.post(async (req, res) => {
 
     // Busque o usuário atualizado no banco de dados
     const updatedUser = await User.findById(req.user);
-    console.log(updatedUser);
     db.disconnectDb();
 
     // Retorne os endereços do usuário atualizado

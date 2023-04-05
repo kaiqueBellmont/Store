@@ -84,20 +84,9 @@ export default function Shipping({
   };
 
   const saveShippingHandler = async () => {
-    const newAddress = {
-      firstName,
-      lastName,
-      phoneNumber,
-      state,
-      city,
-      zipCode,
-      address1,
-      address2,
-      country,
-    };
-    const res = await saveAddress(newAddress, setAddresses); // passa o endereço atualizado para a função saveAddress()
+    const res = await saveAddress(shipping);
+    setAddresses(res.addresses);
   };
-  
 
   const changeActiveHandler = async (id) => {
     const res = await changeActiveAddress(id);
