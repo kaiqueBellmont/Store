@@ -7,28 +7,18 @@ import db from "../utils/db";
 import Header from "@/components/cart/header";
 import Shipping from "@/components/checkout/shipping";
 
-export default function checkout({ cart, user }) {
-  // const [addresses, setAddresses] = useState(user?.address || []);
-  // const [paymentMethod, setPaymentMethod] = useState("");
-  // const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
-  const [selectedAddress, setSelectedAddress] = useState(user?.address[1]);
-  // useEffect(() => {
-  //   let check = addresses.find((ad) => ad.active == true);
-  //   if (check) {
-  //     setSelectedAddress(check);
-  //   } else {
-  //     setSelectedAddress("");
-  //   }
-  // }, [addresses]);
+export default function checkout({ user }) {
+  const [addresses, setAddresses] = useState(user?.address || []);
+  // Aqui
   return (
     <>
       <Header />
       <div className={`${styles.container} ${styles.checkout}`}>
         <div className={styles.checkout__side}>
           <Shipping
-            selectedAddress={selectedAddress}
-            setSelectedAddress={setSelectedAddress}
             user={user}
+            addresses={addresses}
+            setAddresses={setAddresses}
           />
         </div>
         <div className={styles.checkout__side}></div>

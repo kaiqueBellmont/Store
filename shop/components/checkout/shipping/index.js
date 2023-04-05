@@ -6,7 +6,7 @@ import ShippingInput from "@/components/inputs/shippingInput";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { countries } from "../../../data/countries";
 import SingularSelect from "@/components/selects/SingularSelect";
-import { saveAddress } from "@/requests/user";
+import { changeActiveAddress, saveAddress } from "@/requests/user";
 import { FaIdCard, FaMapMarkedAlt } from "react-icons/fa";
 import { IoMdArrowDropupCircle } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -23,8 +23,13 @@ const initialValues = {
   address2: "",
   country: "",
 };
-export default function Shipping({ selectedAddress, setSelectedAddress, user }) {
-  const [addresses, setAddresses] = useState(user?.address || []);
+export default function Shipping({
+
+  user,
+  addresses,
+  setAddresses
+}) {
+
   const [shipping, setShipping] = useState(initialValues);
   const [visible, setVisible] = useState(user?.address.length ? false : true);
   const {
@@ -38,6 +43,7 @@ export default function Shipping({ selectedAddress, setSelectedAddress, user }) 
     address2,
     country,
   } = shipping
+
   const validate = Yup.object({
     firstName: Yup.string()
       .required("First name is required.")
@@ -71,24 +77,42 @@ export default function Shipping({ selectedAddress, setSelectedAddress, user }) 
       .max(100, "Address Line 2 should contain 5-100 characters."),
     country: Yup.string().required("Country name is required."),
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setShipping({ ...shipping, [name]: value });
   };
+
   const saveShippingHandler = async () => {
-    const res = await saveAddress(shipping);
-    setAddresses(res.addresses);
-    setSelectedAddress(res);
+    const newAddress = {
+      firstName,
+      lastName,
+      phoneNumber,
+      state,
+      city,
+      zipCode,
+      address1,
+      address2,
+      country,
+    };
+    const res = await saveAddress(newAddress, setAddresses); // passa o endereço atualizado para a função saveAddress()
   };
+  
+
+  const changeActiveHandler = async (id) => {
+    const res = await changeActiveAddress(id);
+    setAddresses(res.addresses);
+  };
+
   return (
     <div className={styles.shipping}>
       <div className={styles.addresses}>
-        {addresses.map((address) => (
+        {addresses && addresses.map((address) => (
           <div style={{ position: "relative" }}>
             <div
               className={`${styles.address} ${address.active && styles.active}`}
               key={address._id}
-            // onClick={() => changeActiveHandler(address._id)}
+              onClick={() => changeActiveHandler(address._id)}
             >
               <div className={styles.address__side}>
                 <img src={user.image} alt="" />

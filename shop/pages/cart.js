@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import PaymentMethods from "@/components/cart/paymentMethods";
 import ProductsSwiper from "@/components/productsSwiper";
 import { women_swiper } from "@/data/home";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { saveCart } from "@/requests/user";
 import axios from "axios";

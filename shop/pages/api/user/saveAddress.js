@@ -7,18 +7,28 @@ const handler = nc().use(auth);
 handler.post(async (req, res) => {
   try {
     db.connectDb();
-    const { address, user_id } = req.body;
-    const user = User.findById(req.user);
-    await user.updateOne({
-      $push: {
-        address: address,
-      },
-    });
-    res.json({ address });
+    const { address } = req.body;
+    const user = await User.findById(req.user);
+
+    await user.updateOne(
+      {
+        $push: {
+          address: address,
+        },
+      }
+    );
+
+    // Busque o usuário atualizado no banco de dados
+    const updatedUser = await User.findById(req.user);
+    console.log(updatedUser);
     db.disconnectDb();
+
+    // Retorne os endereços do usuário atualizado
+    return res.json({ addresses: updatedUser.address });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 });
+
 
 export default handler;
