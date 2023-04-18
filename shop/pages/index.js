@@ -60,7 +60,7 @@ export default function Home({ country, products }) {
           />
         </div>
         <ProductsSwiper products={women_swiper} />
-        <ProductsSwiper products={gamingSwiper} header="For Gamers" bg="#ed4337" />
+        {/* <ProductsSwiper products={gamingSwiper} header="For Gamers" bg="#ed4337" /> */}
         <ProductsSwiper products={homeImprovSwiper} header="House Improvements" bg="#5a31f4" />
         <div className={styles.products}>
           {products.map((product) => (
