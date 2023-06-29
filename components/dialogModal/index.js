@@ -16,7 +16,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function DialogModal({ type }) {
   const dispatch = useDispatch();
   const { dialog } = useSelector((state) => ({ ...state }));
-  const test = dialog.msgs.find((x) => x.type == "error");
+  // const test = dialog.msgs.find((x) => x.type == "error");
 
   const handleClose = () => {
     dispatch(hideDialog());

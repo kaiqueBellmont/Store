@@ -3,8 +3,9 @@ import { combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
+import expandSidebar from './ExpandSlice'
 import cart from './cartSlice'
-const reducers = combineReducers({ cart });
+const reducers = combineReducers({ cart, expandSidebar });
 
 const config = {
   key: "root",
