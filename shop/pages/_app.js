@@ -1,5 +1,6 @@
 import '../styles/globals.scss'
 import { SessionProvider } from "next-auth/react"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 
 import { Provider } from 'react-redux'
@@ -21,7 +22,12 @@ function App({ Component, pageProps: { session, ...pageProps } }) {
 
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Component {...pageProps} />
+            <PayPalScriptProvider
+              deferLoading={true}
+              options={{ "client-id": process.env.PAYPAL_CLIENT_ID }}
+            >
+              <Component {...pageProps} />
+            </PayPalScriptProvider>
           </PersistGate>
         </Provider>
       </SessionProvider>
