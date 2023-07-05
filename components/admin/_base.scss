@@ -8,7 +8,7 @@
   padding: 10px 15px;
   font-weight: 600;
   cursor: pointer;
-  // border-radius: 5px;
+  border-radius: 15px;
   color: #222;
   margin-top: 10px;
   transition: all 0.1s;
@@ -17,7 +17,7 @@
     color: #fff;
   }
   &:hover {
-    background: $blue;
+    background: darkslateblue;
     color: #fff;
   }
 }
