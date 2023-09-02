@@ -97,7 +97,7 @@ export default function AddReview({ product, setReviews }) {
   };
   return (
     <div className={styles.reviews__add}>
-      {/* <DialogModal /> */}
+      <DialogModal />
       <div className={styles.reviews__add_wrap}>
         <div className={styles.flex} style={{ gap: "10px" }}>
           <Select

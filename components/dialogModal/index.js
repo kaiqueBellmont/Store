@@ -13,10 +13,9 @@ import styles from "./styles.module.scss";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
-export default function DialogModal({ type }) {
+export default function DialogModal() {
   const dispatch = useDispatch();
   const { dialog } = useSelector((state) => ({ ...state }));
-  // const test = dialog.msgs.find((x) => x.type == "error");
 
   const handleClose = () => {
     dispatch(hideDialog());
@@ -38,11 +37,7 @@ export default function DialogModal({ type }) {
         aria-describedby="alert-dialog-slide-description"
         fullWidth={true}
       >
-        <DialogTitle
-          className={`${styles.header} ${!test ? styles.dialog_success : ""}`}
-        >
-          {dialog.header}
-        </DialogTitle>
+        <DialogTitle className={`${styles.header}`}> {dialog.header} </DialogTitle>
         <DialogContent className={styles.body}>
           {dialog.msgs &&
             dialog.msgs.map((msg, i) => (

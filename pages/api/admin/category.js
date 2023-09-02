@@ -4,7 +4,7 @@ import admin from "../../../middleware/admin";
 import Category from "../../../models/Category";
 import db from "../../../utils/db";
 import slugify from "slugify";
-const handler = nc().use(auth).use(admin);
+const handler = nc().use(auth);
 
 handler.post(async (req, res) => {
   try {

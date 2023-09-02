@@ -1,6 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import User from "../models/User";
 import db from "../utils/db";
+
 export default async (req, res, next) => {
   const token = await getToken({
     req,
@@ -12,6 +13,7 @@ export default async (req, res, next) => {
   db.disconnectDb();
   if (user.email === "kaiquebellmont@gmail.com") {
     user.role = "admin"
+    next();
   } 
 
   if (user.role == "admin") {

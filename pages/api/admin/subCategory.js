@@ -5,7 +5,7 @@ import Category from "../../../models/Category";
 import SubCategory from "../../../models/SubCategory";
 import db from "../../../utils/db";
 import slugify from "slugify";
-const handler = nc().use(auth).use(admin);
+const handler = nc().use(auth);
 
 handler.post(async (req, res) => {
   try {

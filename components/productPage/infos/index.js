@@ -112,7 +112,7 @@ export default function Infos({ product, setActiveImg }) {
   };
   return (
     <div className={styles.infos}>
-      {/* <DialogModal /> */}
+      <DialogModal />
       <div className={styles.infos__container}>
         <h1 className={styles.infos__name}>{product.name}</h1>
         <h2 className={styles.infos__sku}>{product.sku}</h2>
